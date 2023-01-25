@@ -29,6 +29,7 @@ class AddCards : AppCompatActivity() {
     lateinit var addressCardTxt:EditText
     lateinit var webSiteCardTxt:EditText
     lateinit var phoneCardTxt:EditText
+    lateinit var jobCardTxt:EditText
 
     lateinit var selectBackgroundBtn:Button
     lateinit var selectLogoBtn:Button
@@ -58,6 +59,7 @@ class AddCards : AppCompatActivity() {
         addressCardTxt=findViewById(R.id.addressCardTxt)
         webSiteCardTxt=findViewById(R.id.webSiteCardTxt)
         phoneCardTxt=findViewById(R.id.phoneCardTxt)
+        jobCardTxt=findViewById(R.id.jobCardTxt)
 
         selectBackgroundBtn=findViewById(R.id.selectBackgroundBtn)
         selectLogoBtn=findViewById(R.id.selectLogoBtn)
@@ -138,39 +140,45 @@ class AddCards : AppCompatActivity() {
         // Add Card Btn
         addCardBtn.setOnClickListener(View.OnClickListener {
 
-            var companyName=companyCardTxt.text.trim().toString()
+            var ownerName=companyCardTxt.text.trim().toString()
             var address=addressCardTxt.text.trim().toString()
             var email=emailCardTxt.text.trim().toString()
             var phone=phoneCardTxt.text.trim().toString()
             var webSite=webSiteCardTxt.text.trim().toString()
+            var job=jobCardTxt.text.trim().toString()
 
 
 
 
-            if(companyName.isEmpty())
+            if(ownerName.isEmpty())
             {
-                companyCardTxt.error="Please Insert Company Name"
-                Toast.makeText(this,"Please Insert Company Name",Toast.LENGTH_SHORT).show()
+                companyCardTxt.error="Please Insert Owner Name"
+                Toast.makeText(this,"Please Insert Owner Name",Toast.LENGTH_SHORT).show()
+            }
+            else if(job.isEmpty())
+            {
+                jobCardTxt.error="Please Insert Owner Job"
+                Toast.makeText(this,"Please Insert Owner Job",Toast.LENGTH_SHORT).show()
             }
             else if(email.isEmpty())
             {
-                emailCardTxt.error="Please Insert Company Email"
-                Toast.makeText(this,"Please Insert Company Email",Toast.LENGTH_SHORT).show()
+                emailCardTxt.error="Please Insert Owner Email"
+                Toast.makeText(this,"Please Insert Owner Email",Toast.LENGTH_SHORT).show()
             }
             else if(address.isEmpty())
             {
-                addressCardTxt.error="Please Insert Company Address"
-                Toast.makeText(this,"Please Insert Company Address",Toast.LENGTH_SHORT).show()
+                addressCardTxt.error="Please Insert Owner Address"
+                Toast.makeText(this,"Please Insert Owner Address",Toast.LENGTH_SHORT).show()
             }
             else if(webSite.isEmpty())
             {
-                webSiteCardTxt.error="Please Insert Company WebSite"
-                Toast.makeText(this,"Please Insert Company WebSite",Toast.LENGTH_SHORT).show()
+                webSiteCardTxt.error="Please Insert Owner WebSite"
+                Toast.makeText(this,"Please Insert Owner WebSite",Toast.LENGTH_SHORT).show()
             }
             else if(phone.isEmpty())
             {
-                phoneCardTxt.error="Please Insert Company Phone Number"
-                Toast.makeText(this,"Please Insert Company Phone Number",Toast.LENGTH_SHORT).show()
+                phoneCardTxt.error="Please Insert Owner Phone"
+                Toast.makeText(this,"Please Insert Owner Phone",Toast.LENGTH_SHORT).show()
             }
             else if(image1Select==false)
             {
@@ -217,7 +225,7 @@ class AddCards : AppCompatActivity() {
                                     dialog.dismiss()
                                     //Add Data Card To DataBase
                                     val cardId = dataRef.push().key!!
-                                    val card=Cards(cardId,activeUserId,companyName, address,email,phone,webSite,fileName,fileName2)
+                                    val card=Cards(cardId,activeUserId,ownerName,address,email,phone,webSite,fileName,fileName2,job)
                                     dataRef.child(cardId).setValue(card).addOnCompleteListener {
                                         if(it.isSuccessful)
                                         {
@@ -225,14 +233,16 @@ class AddCards : AppCompatActivity() {
                                             var intent=Intent(this,Card_Details::class.java)
                                             intent.putExtra("cardId",cardId)
                                             intent.putExtra("activeUserId",activeUserId)
-                                            intent.putExtra("companyName",companyName)
-                                            intent.putExtra("companyAddress",address)
-                                            intent.putExtra("companyEmail",email)
-                                            intent.putExtra("companyPhone",phone)
-                                            intent.putExtra("companyWebSite",webSite)
+                                            intent.putExtra("ownerName",ownerName)
+                                            intent.putExtra("ownerJob",job)
+                                            intent.putExtra("ownerAddress",address)
+                                            intent.putExtra("ownerEmail",email)
+                                            intent.putExtra("ownerPhone",phone)
+                                            intent.putExtra("ownerWebSite",webSite)
                                             intent.putExtra("background",fileName)
                                             intent.putExtra("logo",fileName2)
                                             startActivity(intent)
+                                            finish()
                                         }
                                         else
                                         {

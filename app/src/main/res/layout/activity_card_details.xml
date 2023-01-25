@@ -7,231 +7,191 @@
     android:background="#fff"
     tools:context=".Card_Details">
 
+
     <ImageView
         android:id="@+id/backgroundImageCard"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="59dp" />
+        tools:layout_editor_absoluteX="52dp"
+        tools:layout_editor_absoluteY="519dp" />
 
-    <ImageView
-        android:id="@+id/switchColorBtn"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/backgroundImageCard"
-        app:srcCompat="@drawable/ic_dark" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/logoImage"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="8dp"
         android:scaleType="centerCrop"
         android:src="@drawable/background_blue_transpa"
-        app:layout_constraintEnd_toStartOf="@+id/backgroundImageCard"
-        app:layout_constraintStart_toEndOf="@+id/backgroundImageCard"
-        app:layout_constraintTop_toTopOf="@+id/backgroundImageCard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/Circular"
         tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/companyNameView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/robotoreg"
-        android:text="Company Name :"
-        android:textColor="#333333"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/icHome"
-        app:layout_constraintStart_toStartOf="@+id/icHome"
-        app:layout_constraintTop_toBottomOf="@+id/icHome" />
-
-    <TextView
-        android:id="@+id/companyNameFinal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/robotoreg"
-        android:text="Google"
-        android:textColor="#333333"
-        android:textSize="18sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="@+id/companyNameView"
-        app:layout_constraintStart_toStartOf="@+id/companyNameView"
-        app:layout_constraintTop_toBottomOf="@+id/companyNameView" />
-
-
-    <ImageView
-        android:id="@+id/icHome"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="24dp"
-        android:src="@drawable/ic_company_dark"
-        app:layout_constraintStart_toStartOf="@+id/backgroundImageCard"
-        app:layout_constraintTop_toBottomOf="@+id/logoImage" />
-
-    <TextView
-        android:id="@+id/companyEmailView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/robotoreg"
-        android:text="Company Email :"
-        android:textColor="#333333"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/icEmail"
-        app:layout_constraintStart_toStartOf="@+id/icEmail"
-        app:layout_constraintTop_toBottomOf="@+id/icEmail" />
-
-    <TextView
-        android:id="@+id/comapnyEmailFinal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/robotoreg"
-        android:text="Google@gmail.com"
-        android:textColor="#333333"
-        android:textSize="18sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="@+id/companyEmailView"
-        app:layout_constraintStart_toStartOf="@+id/companyEmailView"
-        app:layout_constraintTop_toBottomOf="@+id/companyEmailView" />
-
-
-    <ImageView
-        android:id="@+id/icEmail"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="76dp"
-        android:src="@drawable/ic_email_dark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logoImage" />
-
-    <TextView
-        android:id="@+id/comanyWebsiteView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/robotoreg"
-        android:text="Company WebSite :"
-        android:textColor="#333333"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/icWebsite"
-        app:layout_constraintStart_toStartOf="@+id/icWebsite"
-        app:layout_constraintTop_toBottomOf="@+id/icWebsite" />
-
-    <TextView
-        android:id="@+id/companyWebSiteFinal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/robotoreg"
-        android:text="Google.com"
-        android:textColor="#333333"
-        android:textSize="18sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="@+id/comanyWebsiteView"
-        app:layout_constraintStart_toStartOf="@+id/comanyWebsiteView"
-        app:layout_constraintTop_toBottomOf="@+id/comanyWebsiteView" />
-
-
-    <ImageView
-        android:id="@+id/icWebsite"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="24dp"
-        android:src="@drawable/ic_link_dark"
-        app:layout_constraintStart_toStartOf="@+id/backgroundImageCard"
-        app:layout_constraintTop_toBottomOf="@+id/companyNameFinal" />
-
-    <TextView
-        android:id="@+id/companyPhoneView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/robotoreg"
-        android:text="Company Phone :"
-        android:textColor="#333333"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/icPhone"
-        app:layout_constraintStart_toStartOf="@+id/icPhone"
-        app:layout_constraintTop_toBottomOf="@+id/icPhone" />
-
-    <TextView
-        android:id="@+id/companyPhoneFinal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/robotoreg"
-        android:text="+2126555112"
-        android:textColor="#333333"
-        android:textSize="18sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="@+id/companyPhoneView"
-        app:layout_constraintStart_toStartOf="@+id/companyPhoneView"
-        app:layout_constraintTop_toBottomOf="@+id/companyPhoneView" />
-
-
-    <ImageView
-        android:id="@+id/icPhone"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="76dp"
-        android:src="@drawable/ic_phone_dark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/comapnyEmailFinal" />
-
-    <TextView
-        android:id="@+id/companyAddressView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/robotoreg"
-        android:text="Company Address :"
-        android:textColor="#333333"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/backgroundImageCard"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/backgroundImageCard"
-        app:layout_constraintTop_toBottomOf="@+id/icAddress" />
-
-    <TextView
-        android:id="@+id/companyAddressFinal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/robotoreg"
-        android:text="Google Address London 45585 Inc."
-        android:textColor="#333333"
-        android:textSize="18sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="@+id/companyAddressView"
-        app:layout_constraintStart_toStartOf="@+id/companyAddressView"
-        app:layout_constraintTop_toBottomOf="@+id/companyAddressView" />
-
-    <ImageView
-        android:id="@+id/icAddress"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="24dp"
-        android:src="@drawable/ic_home_dark"
-        app:layout_constraintEnd_toStartOf="@+id/backgroundImageCard"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/backgroundImageCard"
-        app:layout_constraintTop_toBottomOf="@+id/companyWebSiteFinal" />
-
     <ImageView
         android:id="@+id/qrCodeImg"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toStartOf="@+id/backgroundImageCard"
-        app:layout_constraintHorizontal_bias="0.499"
-        app:layout_constraintStart_toEndOf="@+id/backgroundImageCard"
-        app:layout_constraintTop_toBottomOf="@+id/companyAddressFinal" />
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear1" />
+
+    <TextView
+        android:id="@+id/ownerNameTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/robotoreg"
+        android:text="Richard Olivia"
+        android:textColor="#4C4C4C"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logoImage" />
+
+    <TextView
+        android:id="@+id/ownerJobTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:fontFamily="@font/robotoreg"
+        android:text="Senior Web Developer"
+        android:textColor="#7A7A7A"
+        android:textSize="23sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ownerNameTxt" />
+
+    <LinearLayout
+        android:id="@+id/linear1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/background_blue_transpa"
+        android:orientation="vertical"
+        android:padding="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ownerJobTxt">
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/icPhone"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_phone_dark" />
+
+            <TextView
+                android:id="@+id/ownerPhoneFinal"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:fontFamily="@font/robotoreg"
+                android:text="+2126555112"
+                android:textColor="#333333"
+                android:textSize="18sp"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/icEmail"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_email_dark" />
+
+            <TextView
+                android:id="@+id/ownerEmailFinal"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:fontFamily="@font/robotoreg"
+                android:text="Google@gmail.com"
+                android:textColor="#333333"
+                android:textSize="18sp"
+                android:textStyle="normal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/icWebsite"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_link_dark" />
+
+            <TextView
+                android:id="@+id/ownerWebSiteFinal"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:fontFamily="@font/robotoreg"
+                android:text="Google.com"
+                android:textColor="#333333"
+                android:textSize="18sp"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/icHome"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_home_dark" />
+
+            <TextView
+                android:id="@+id/ownerAddressFinal"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:fontFamily="@font/robotoreg"
+                android:text="Google Address London 45585 Inc."
+                android:textColor="#333333"
+                android:textSize="18sp"
+                android:textStyle="normal" />
+        </LinearLayout>
+
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

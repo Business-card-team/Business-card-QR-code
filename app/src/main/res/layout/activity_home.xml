@@ -4,32 +4,86 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
     tools:context=".homeActivity">
+    <ImageView
+        android:scaleType="centerCrop"
+        android:src="@drawable/img3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-    <Button
+    <ImageView
+        android:src="@drawable/background_blue_transpa"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
-        android:id="@+id/logOutBtn"
-        android:layout_width="100dp"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:backgroundTint="#00B4E7"
+        android:id="@+id/optionsBtn"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/btn_bg_start_1"
-        android:text="log out"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:srcCompat="@drawable/ic_baseline_menu_24"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:visibility="invisible"
+        android:backgroundTint="#00BDF3"
+        android:id="@+id/addCardOpBtn"
+        android:layout_width="48dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        android:textAlignment="center"
+        app:fabCustomSize="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/optionsBtn"
+        app:layout_constraintEnd_toEndOf="@+id/optionsBtn"
+        app:layout_constraintStart_toStartOf="@+id/optionsBtn"
+        app:srcCompat="@drawable/ic_baseline_add_24"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:backgroundTint="#00BDF3"
+        android:visibility="invisible"
+        android:id="@+id/camOpBtn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        android:textAlignment="center"
+        app:fabCustomSize="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/addCardOpBtn"
+        app:layout_constraintEnd_toEndOf="@+id/addCardOpBtn"
+        app:layout_constraintStart_toStartOf="@+id/addCardOpBtn"
+        app:srcCompat="@drawable/ic_baseline_camera_alt_24"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:visibility="invisible"
+        android:backgroundTint="#00BDF3"
+        android:id="@+id/logOutOpBtn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        android:textAlignment="center"
+        app:fabCustomSize="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/camOpBtn"
+        app:layout_constraintEnd_toEndOf="@+id/camOpBtn"
+        app:layout_constraintStart_toStartOf="@+id/camOpBtn"
+        app:srcCompat="@drawable/ic_baseline_logout_24"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:padding="10dp"
+        android:id="@+id/myRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-
-        android:id="@+id/addCardActBtn"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:background="@drawable/btn_bg_start_1"
-        android:text="Add Cards"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logOutBtn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

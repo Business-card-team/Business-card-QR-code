@@ -1,5 +1,6 @@
 package com.example.projet_business_card
 
+import android.app.Dialog
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -8,43 +9,36 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.Window
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.storage.FirebaseStorage
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.WriterException
+import com.google.zxing.qrcode.QRCodeWriter
 
 import java.io.File
 
 class Card_Details : AppCompatActivity() {
 
-    lateinit var companyNameFinal:TextView
-    lateinit var comapnyEmailFinal:TextView
-    lateinit var companyWebSiteFinal:TextView
-    lateinit var companyPhoneFinal:TextView
-    lateinit var companyAddressFinal:TextView
-
     lateinit var logoImage:ImageView
     lateinit var backgroundImageCard:ImageView
 
-    lateinit var switchColorBtn:ImageView
-
-    lateinit var icHome:ImageView
-    lateinit var icEmail:ImageView
-    lateinit var icWebsite:ImageView
-    lateinit var icPhone:ImageView
-    lateinit var icAddress:ImageView
-
-    lateinit var companyNameView:TextView
-    lateinit var comapnyEmailView:TextView
-    lateinit var companyWebSiteView:TextView
-    lateinit var companyPhoneView:TextView
-    lateinit var companyAddressView:TextView
+    lateinit var ownerNameTxt:TextView
+    lateinit var ownerJobTxt:TextView
+    lateinit var ownerPhoneFinal:TextView
+    lateinit var ownerEmailFinal:TextView
+    lateinit var ownerWebSiteFinal:TextView
+    lateinit var ownerAddressFinal:TextView
 
     lateinit var qrCodeImage:ImageView
+    lateinit var qrCodeImageZommer:ImageView
      var lightOn :Boolean=false
-
+    lateinit var  bmp:Bitmap
+    lateinit var dialog:Dialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_card_details)
@@ -60,83 +54,81 @@ class Card_Details : AppCompatActivity() {
             )
         }
         //-----------
-
+        ownerNameTxt=findViewById(R.id.ownerNameTxt)
+        ownerJobTxt=findViewById(R.id.ownerJobTxt)
+        ownerPhoneFinal=findViewById(R.id.ownerPhoneFinal)
+        ownerEmailFinal=findViewById(R.id.ownerEmailFinal)
+        ownerWebSiteFinal=findViewById(R.id.ownerWebSiteFinal)
+        ownerAddressFinal=findViewById(R.id.ownerAddressFinal)
 
         //-----------------
-        companyNameFinal=findViewById(R.id.companyNameFinal)
-        comapnyEmailFinal=findViewById(R.id.comapnyEmailFinal)
-        companyWebSiteFinal=findViewById(R.id.companyWebSiteFinal)
-        companyPhoneFinal=findViewById(R.id.companyPhoneFinal)
-        companyAddressFinal=findViewById(R.id.companyAddressFinal)
 
-        companyNameView=findViewById(R.id.companyNameView)
-        comapnyEmailView=findViewById(R.id.companyEmailView)
-        companyWebSiteView=findViewById(R.id.comanyWebsiteView)
-        companyPhoneView=findViewById(R.id.companyPhoneView)
-        companyAddressView=findViewById(R.id.companyAddressView)
+        //QR Zoomer Dialog
+        dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setContentView(R.layout.qr_zommer)
+
 
         logoImage=findViewById(R.id.logoImage)
         backgroundImageCard=findViewById(R.id.backgroundImageCard)
 
-        switchColorBtn=findViewById(R.id.switchColorBtn)
 
         qrCodeImage=findViewById(R.id.qrCodeImg)
 
 
 
-        icHome=findViewById(R.id.icHome)
-        icEmail=findViewById(R.id.icEmail)
-        icWebsite=findViewById(R.id.icWebsite)
-        icPhone=findViewById(R.id.icPhone)
-        icAddress=findViewById(R.id.icAddress)
+
 
 
 
         // Get Intent Informations
         val cardId:String? = intent.getStringExtra("cardId")
         val activeUserId:String? = intent.getStringExtra("activeUserId")
-        val companyName:String? = intent.getStringExtra("companyName")
-        val companyAddress:String? = intent.getStringExtra("companyAddress")
-        val companyEmail:String? = intent.getStringExtra("companyEmail")
-        val companyPhone:String? = intent.getStringExtra("companyPhone")
-        val companyWebSite:String? = intent.getStringExtra("companyWebSite")
+        val ownerName:String? = intent.getStringExtra("ownerName")
+        val ownerJob:String? = intent.getStringExtra("ownerJob")
+        val ownerAddress:String? = intent.getStringExtra("ownerAddress")
+        val ownerEmail:String? = intent.getStringExtra("ownerEmail")
+        val ownerPhone:String? = intent.getStringExtra("ownerPhone")
+        val ownerWebSite:String? = intent.getStringExtra("ownerWebSite")
         val background:String? = intent.getStringExtra("background")
         val logo:String? = intent.getStringExtra("logo")
 
+        ownerNameTxt.setText(ownerName)
+        ownerJobTxt.setText(ownerJob)
+        ownerPhoneFinal.setText(ownerEmail)
+        ownerEmailFinal.setText(ownerPhone)
+        ownerWebSiteFinal.setText(ownerWebSite)
+        ownerAddressFinal.setText(ownerAddress)
 
-        companyNameFinal.setText(companyName)
-        comapnyEmailFinal.setText(companyEmail)
-        companyWebSiteFinal.setText(companyWebSite)
-        companyPhoneFinal.setText(companyPhone)
-        companyAddressFinal.setText(companyAddress)
+
 
         //Generate Code QR
-
-        /*
-        val dataQR="Company Name : "+companyName+" Company Email : "+companyEmail+" Company Address : "+companyAddress+" Company Phone : "+
-                    companyPhone+" Company Website : "+companyWebSite
+        val dataQR=""+ownerWebSite
 
         val writer=QRCodeWriter()
         try {
             val bitMatrix=writer.encode(dataQR,BarcodeFormat.QR_CODE,512,512)
             val width=bitMatrix.width
             val height=bitMatrix.height
-            val bmp=Bitmap.createBitmap(width,height,Bitmap.Config.RGB_565)
+            bmp=Bitmap.createBitmap(width,height,Bitmap.Config.RGB_565)
+
             for(x in 0 until width)
             {
-                for (y in x until height)
+                for(y in 0 until height)
                 {
                     bmp.setPixel(x,y,if(bitMatrix[x,y]) Color.BLACK else Color.WHITE)
                 }
             }
             qrCodeImage.setImageBitmap(bmp)
-        }catch (ex :WriterException)
+
+        }catch (e:WriterException)
         {
-            Toast.makeText(this,""+ex.message,Toast.LENGTH_LONG).show()
+            Toast.makeText(this,""+e.message,Toast.LENGTH_LONG).show()
         }
 
 
-         */
+
 
 
 
@@ -169,55 +161,10 @@ class Card_Details : AppCompatActivity() {
             }
         )
 
-
-        //Switch Colors From Black To White
-        switchColorBtn.setOnClickListener(View.OnClickListener {
-            if(lightOn)
-            {
-                lightOn=false
-
-                switchColorBtn.setImageResource(R.drawable.ic_dark)
-
-                companyNameFinal.setTextColor(Color.BLACK)
-                comapnyEmailFinal.setTextColor(Color.BLACK)
-                companyWebSiteFinal.setTextColor(Color.BLACK)
-                companyPhoneFinal.setTextColor(Color.BLACK)
-                companyAddressFinal.setTextColor(Color.BLACK)
-
-                companyNameView.setTextColor(Color.BLACK)
-                comapnyEmailView.setTextColor(Color.BLACK)
-                companyWebSiteView.setTextColor(Color.BLACK)
-                companyPhoneView.setTextColor(Color.BLACK)
-                companyAddressView.setTextColor(Color.BLACK)
-
-                icHome.setImageResource(R.drawable.ic_company_dark)
-                icEmail.setImageResource(R.drawable.ic_email_dark)
-                icWebsite.setImageResource(R.drawable.ic_link_dark)
-                icPhone.setImageResource(R.drawable.ic_phone_dark)
-                icAddress.setImageResource(R.drawable.ic_home_dark)
-            }
-            else
-            {
-                lightOn=true
-                switchColorBtn.setImageResource(R.drawable.ic_light)
-                companyNameFinal.setTextColor(Color.WHITE)
-                comapnyEmailFinal.setTextColor(Color.WHITE)
-                companyWebSiteFinal.setTextColor(Color.WHITE)
-                companyPhoneFinal.setTextColor(Color.WHITE)
-                companyAddressFinal.setTextColor(Color.WHITE)
-
-                companyNameView.setTextColor(Color.WHITE)
-                comapnyEmailView.setTextColor(Color.WHITE)
-                companyWebSiteView.setTextColor(Color.WHITE)
-                companyPhoneView.setTextColor(Color.WHITE)
-                companyAddressView.setTextColor(Color.WHITE)
-
-                icHome.setImageResource(R.drawable.ic_company)
-                icEmail.setImageResource(R.drawable.ic_email)
-                icWebsite.setImageResource(R.drawable.ic_link)
-                icPhone.setImageResource(R.drawable.ic_phone)
-                icAddress.setImageResource(R.drawable.ic_home)
-            }
+        //Image QR Click
+        qrCodeImage.setOnClickListener(View.OnClickListener {
+            dialog.findViewById<ImageView>(R.id.qrZommer).setImageBitmap(bmp)
+            dialog.show()
         })
     }
 }

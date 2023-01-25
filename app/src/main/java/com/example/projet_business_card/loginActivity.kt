@@ -150,7 +150,7 @@ class loginActivity : AppCompatActivity() {
                                     dialog.dismiss()
                                     val intent=Intent(this,homeActivity::class.java)
                                     startActivity(intent)
-                                    (MainActivity()::class as Activity).finish()
+                                    //(MainActivity()::class as Activity).finish()
                                     finish()
                                 }
                                 else
@@ -253,7 +253,7 @@ class loginActivity : AppCompatActivity() {
                 dialog.dismiss()
                 val intent=Intent(this,homeActivity::class.java)
                 startActivity(intent)
-                (MainActivity()::class as Activity).finish()
+                //(MainActivity()::class as Activity).finish()
                 finish()
 
             }.addOnFailureListener { err ->

@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/robotolight"
         android:text="Card Info :"
         android:textColor="#fff"
@@ -43,13 +43,29 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/input_background_addcard"
-        android:drawableRight="@drawable/ic_company"
+        android:drawableRight="@drawable/ic_baseline_person_24"
         android:hint="Name ..."
         android:textColorHint="#fff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <EditText
+        android:id="@+id/jobCardTxt"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/input_background_addcard"
+        android:drawableRight="@drawable/ic_baseline_build_24"
+        android:hint="Job ..."
+        android:textColorHint="#fff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/companyCardTxt" />
 
     <EditText
         android:id="@+id/emailCardTxt"
@@ -65,7 +81,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/companyCardTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/jobCardTxt" />
 
     <EditText
         android:id="@+id/addressCardTxt"

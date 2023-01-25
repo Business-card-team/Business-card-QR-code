@@ -82,8 +82,8 @@ class MainActivity : AppCompatActivity() {
                 this@MainActivity, sharedImage3, ViewCompat.getTransitionName(sharedImage3)!!
             )
 
-            startActivity(Intent(this,loginActivity::class.java),options.toBundle())
-
+            startActivity(Intent(this,loginActivity::class.java))
+            finish()
         })
     }
 }

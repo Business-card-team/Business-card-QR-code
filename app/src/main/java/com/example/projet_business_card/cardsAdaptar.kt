@@ -15,9 +15,9 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 
-class cardsAdaptar(private val cardsList:ArrayList<Cards>,private val context: Context,
+class cardsAdaptar(private var cardsList:ArrayList<Cards>, private val context: Context,
                    private val dialogRemove:Dialog,
-                   private val recyclerView: RecyclerView,private val dialogLoading:Dialog) :
+                   private val recyclerView: RecyclerView, private val dialogLoading:Dialog) :
      RecyclerView.Adapter<cardsAdaptar.MyViewHolder>() {
 
 
@@ -94,6 +94,15 @@ class cardsAdaptar(private val cardsList:ArrayList<Cards>,private val context: C
             }
         })
 
+    }
+
+    public fun filterList(filterList: ArrayList<Cards>) {
+        // below line is to add our filtered
+        // list in our course array list.
+        cardsList = filterList
+        // below line is to notify our adapter
+        // as change in recycler view data.
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {

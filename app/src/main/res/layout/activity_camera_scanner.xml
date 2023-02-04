@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".camera_scanner">
+
+    <Button
+        android:id="@+id/viewDetailsBtn"
+        android:layout_width="98dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:text="View Card"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.budiyev.android.codescanner.CodeScannerView
+        android:id="@+id/theScanner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:autoFocusButtonColor="#fff"
+        app:autoFocusButtonVisible="true"
+        app:flashButtonColor="#fff"
+        app:flashButtonVisible="true"
+        tools:layout_editor_absoluteX="192dp"
+        tools:layout_editor_absoluteY="168dp">
+
+    </com.budiyev.android.codescanner.CodeScannerView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

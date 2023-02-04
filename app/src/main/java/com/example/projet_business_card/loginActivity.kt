@@ -111,7 +111,7 @@ class loginActivity : AppCompatActivity() {
         btnNewAccount.setOnClickListener(View.OnClickListener {
 
             startActivity(Intent(this,signUpActivity::class.java))
-            finish()
+            //finish()
         })
 
 
@@ -178,7 +178,7 @@ class loginActivity : AppCompatActivity() {
         forgotPassBtn.setOnClickListener(View.OnClickListener {
             val intent=Intent(this,forgot_Password_Activity::class.java)
             startActivity(intent)
-            finish()
+            //finish()
         })
 
 

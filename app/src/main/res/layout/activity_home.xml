@@ -5,24 +5,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".homeActivity">
-    <ImageView
-        android:scaleType="centerCrop"
-        android:src="@drawable/img3"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
     <ImageView
-        android:src="@drawable/background_blue_transpa"
+        android:id="@+id/imageView4"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img3" />
+
+    <EditText
+        android:id="@+id/searchInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/input_background_addcard"
+        android:drawableEnd="@drawable/ic_baseline_search_24"
+        android:hint="Search ..."
+        android:textColorHint="#fff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView4" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/background_blue_transpa" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:backgroundTint="#00B4E7"
         android:id="@+id/optionsBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        android:backgroundTint="#A0A4A5"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,14 +48,14 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:visibility="invisible"
-        android:backgroundTint="#00BDF3"
         android:id="@+id/addCardOpBtn"
         android:layout_width="48dp"
         android:layout_height="40dp"
         android:layout_marginBottom="8dp"
+        android:backgroundTint="#929495"
         android:clickable="true"
         android:textAlignment="center"
+        android:visibility="invisible"
         app:fabCustomSize="40dp"
         app:layout_constraintBottom_toTopOf="@+id/optionsBtn"
         app:layout_constraintEnd_toEndOf="@+id/optionsBtn"
@@ -46,14 +64,14 @@
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:backgroundTint="#00BDF3"
-        android:visibility="invisible"
         android:id="@+id/camOpBtn"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginBottom="8dp"
+        android:backgroundTint="#929495"
         android:clickable="true"
         android:textAlignment="center"
+        android:visibility="invisible"
         app:fabCustomSize="40dp"
         app:layout_constraintBottom_toTopOf="@+id/addCardOpBtn"
         app:layout_constraintEnd_toEndOf="@+id/addCardOpBtn"
@@ -62,14 +80,14 @@
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:visibility="invisible"
-        android:backgroundTint="#00BDF3"
         android:id="@+id/logOutOpBtn"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginBottom="8dp"
+        android:backgroundTint="#929495"
         android:clickable="true"
         android:textAlignment="center"
+        android:visibility="invisible"
         app:fabCustomSize="40dp"
         app:layout_constraintBottom_toTopOf="@+id/camOpBtn"
         app:layout_constraintEnd_toEndOf="@+id/camOpBtn"
@@ -78,12 +96,29 @@
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:padding="10dp"
         android:id="@+id/myRecycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/searchInput" />
+
+    <TextView
+        android:id="@+id/noCardsTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/robotoreg"
+        android:text="There is no Cards"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintTop_toBottomOf="@+id/searchInput"
+        tools:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

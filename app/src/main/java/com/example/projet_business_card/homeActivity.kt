@@ -6,19 +6,26 @@ import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class homeActivity : AppCompatActivity() {
 
@@ -27,6 +34,8 @@ class homeActivity : AppCompatActivity() {
     lateinit var optionsBtn:FloatingActionButton
     lateinit var camOpBtn:FloatingActionButton
     lateinit var logOutOpBtn:FloatingActionButton
+    lateinit var searchInput:EditText
+    lateinit var noCardsTxt:TextView
     var isClicked=false
 
     lateinit var dbRef:DatabaseReference
@@ -38,7 +47,7 @@ class homeActivity : AppCompatActivity() {
      lateinit var dialog:Dialog
      lateinit var dialog2:Dialog
      lateinit var dialog3:Dialog
-
+    private lateinit var adapter: cardsAdaptar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,6 +93,8 @@ class homeActivity : AppCompatActivity() {
         optionsBtn=findViewById(R.id.optionsBtn)
         camOpBtn=findViewById(R.id.camOpBtn)
         logOutOpBtn=findViewById(R.id.logOutOpBtn)
+        searchInput=findViewById(R.id.searchInput)
+        noCardsTxt=findViewById(R.id.noCardsTxt)
 
         myRecycler=findViewById(R.id.myRecycler)
 
@@ -119,6 +130,20 @@ class homeActivity : AppCompatActivity() {
 
         })
 
+        //Search For Card
+
+        searchInput.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                filter(s.toString())
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+        })
 
 
         //Add Cards Btn
@@ -129,7 +154,7 @@ class homeActivity : AppCompatActivity() {
 
         //Scan Code QR Activity
         camOpBtn.setOnClickListener(View.OnClickListener {
-
+            startActivity(Intent(this,camera_scanner::class.java))
         })
 
         //Options Btn
@@ -169,6 +194,7 @@ class homeActivity : AppCompatActivity() {
                 // Get Post object and use the values to update the UI
                 if (dataSnapshot.exists())
                 {
+
                     for(dataSnap in dataSnapshot.children)
                     {
                         val user=dataSnap.getValue(Users::class.java)
@@ -191,8 +217,8 @@ class homeActivity : AppCompatActivity() {
                                     if(card?.idUser.toString()==activeUserId)
                                         listCards.add(card!!)
                                 }
-
-                                myRecycler.adapter=cardsAdaptar(listCards,applicationContext,dialog3,myRecycler,dialog)
+                                adapter=cardsAdaptar(listCards,applicationContext,dialog3,myRecycler,dialog)
+                                myRecycler.adapter=adapter
 
                             }
                             else
@@ -215,6 +241,7 @@ class homeActivity : AppCompatActivity() {
                 }
                 else
                 {
+
                     dialog.dismiss()
                 }
 
@@ -225,10 +252,42 @@ class homeActivity : AppCompatActivity() {
             }
         }
         dbRef.addValueEventListener(postListener)
+        if(!listCards.isEmpty())
+        {
+            noCardsTxt.visibility=View.GONE
+        }
+        else
+        {
+            noCardsTxt.visibility=View.VISIBLE
+        }
 
 
 
+    }
 
+    private fun filter(text: String) {
+        // creating a new array list to filter our data.
+        val filteredlist = ArrayList<Cards>()
+
+        // running a for loop to compare elements.
+        for (item in listCards) {
+            // checking if the entered string matched with any item of our recycler view.
+            @Suppress("DEPRECATION")
+            if (item.cardOwner!!.toLowerCase().contains(text.lowercase(Locale.getDefault()))) {
+                // if the item is matched we are
+                // adding it to our filtered list.
+                filteredlist.add(item)
+            }
+        }
+        if (filteredlist.isEmpty()) {
+            // if no item is added in filtered list we are
+            // displaying a toast message as no data found.
+            //Toast.makeText(this, "No Data Found..", Toast.LENGTH_SHORT).show()
+        } else {
+            // at last we are passing that filtered
+            // list to our adapter class.
+            adapter.filterList(filteredlist)
+        }
     }
 
 

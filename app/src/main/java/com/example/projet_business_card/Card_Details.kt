@@ -104,7 +104,7 @@ class Card_Details : AppCompatActivity() {
 
 
         //Generate Code QR
-        val dataQR=""+ownerWebSite
+        val dataQR=""+cardId
 
         val writer=QRCodeWriter()
         try {
